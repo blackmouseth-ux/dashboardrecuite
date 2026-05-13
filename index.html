@@ -3,587 +3,520 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HR Recruitment Dashboard – TVP Group ปี 2569</title>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>HR Recruitment Dashboard – TVP Group</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d0f1a;
-    --surface: #13162a;
-    --surface2: #1a1e35;
-    --border: #252a47;
-    --accent: #4f8bff;
-    --accent2: #7c5cfc;
-    --green: #22d98a;
-    --orange: #ff9a3c;
-    --red: #ff4f6b;
-    --yellow: #ffd44f;
-    --text: #e4e8ff;
-    --muted: #7a82ab;
-    --font: 'IBM Plex Sans Thai', 'Sarabun', sans-serif;
-  }
+:root{
+  --bg:#fff;--bg-soft:#fafbfd;--surface:#fff;--surface-2:#f5f7fa;--surface-3:#eef1f6;
+  --line:#e6e9ef;--line-strong:#cfd4de;--grid:rgba(20,30,60,.035);
+  --ink:#0a0e1a;--ink-2:#2b3142;--ink-3:#5a6075;--muted:#8c93a6;
+  --accent:#1f63ff;--accent-soft:#eaf0ff;--accent-bg:#f3f6ff;--accent2:#6b3dff;--accent2-soft:#f0eaff;
+  --green:#08a96a;--green-soft:#e3f7ed;--orange:#e07b00;--orange-soft:#fdf0db;
+  --red:#d63a55;--red-soft:#fbe5ea;--yellow:#b58900;--yellow-soft:#fbf3d6;
+  --cyan:#0987a5;--cyan-soft:#e0f4fa;
+  --shadow-xs:0 1px 2px rgba(20,30,60,.04);--shadow-sm:0 2px 6px rgba(20,30,60,.06);
+  --shadow-lg:0 24px 60px rgba(20,30,60,.14);
+  --font:'IBM Plex Sans Thai','Inter',system-ui,sans-serif;
+  --font-num:'IBM Plex Mono','Inter',monospace;
+  --radius:12px;--radius-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+*::-webkit-scrollbar{width:8px;height:8px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+html,body{height:100%}
+body{
+  background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/36px 36px,
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/36px 36px,var(--bg);
+  color:var(--ink);font-family:var(--font);font-size:14px;min-height:100vh;
+  padding:28px 36px 40px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+.mono{font-family:var(--font-num);font-feature-settings:"tnum"}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+  padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  display:grid;place-items:center;font-family:var(--font-num);font-weight:700;font-size:14px;
+  box-shadow:0 4px 14px rgba(31,99,255,.28)}
+.brand h1{font-size:19px;font-weight:700;letter-spacing:-.3px;color:var(--ink);line-height:1.2}
+.brand p{font-size:12px;color:var(--ink-3);margin-top:4px;font-family:var(--font-num);letter-spacing:.2px}
+.top-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    min-height: 100vh;
-    padding: 24px;
-  }
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;padding:8px 13px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);
+  color:var(--ink-3);font-family:var(--font-num)}
+.chip .lbl{color:var(--muted)}.chip .val{color:var(--ink);font-weight:600}
+.chip-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 3px var(--green-soft);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-  /* Header */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .header-left h1 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    background: linear-gradient(90deg, #4f8bff, #a78bfa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .header-left p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 3px;
-  }
-  .badge {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .badge span { color: var(--accent); font-weight: 600; }
+.select-wrap{position:relative}
+.select{appearance:none;-webkit-appearance:none;background:var(--surface);border:1px solid var(--line);
+  color:var(--ink);padding:8px 32px 8px 13px;border-radius:var(--radius-sm);font-size:12px;
+  font-family:var(--font-num);font-weight:600;cursor:pointer;transition:all .15s ease}
+.select:hover{border-color:var(--line-strong);background:var(--bg-soft)}
+.select-wrap::after{content:'▾';position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:10px;pointer-events:none}
 
-  /* KPI Cards */
-  .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-  .kpi {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.15s;
-  }
-  .kpi:hover { transform: translateY(-2px); }
-  .kpi::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 14px 14px 0 0;
-  }
-  .kpi.blue::before { background: var(--accent); }
-  .kpi.green::before { background: var(--green); }
-  .kpi.orange::before { background: var(--orange); }
-  .kpi.red::before { background: var(--red); }
-  .kpi.purple::before { background: var(--accent2); }
+.btn{background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  padding:8px 13px;border-radius:var(--radius-sm);font-size:11.5px;font-weight:500;
+  font-family:var(--font);cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  transition:all .15s ease}
+.btn:hover{border-color:var(--line-strong);color:var(--ink);background:var(--bg-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#1957e6;border-color:#1957e6;color:#fff}
+.btn.primary[disabled]{background:var(--muted);border-color:var(--muted);cursor:wait}
+.btn .spin{display:inline-block;width:12px;height:12px;border:2px solid currentColor;
+  border-right-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  .kpi-label { font-size: 11.5px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
-  .kpi-value { font-size: 32px; font-weight: 700; line-height: 1; }
-  .kpi.blue .kpi-value { color: var(--accent); }
-  .kpi.green .kpi-value { color: var(--green); }
-  .kpi.orange .kpi-value { color: var(--orange); }
-  .kpi.red .kpi-value { color: var(--red); }
-  .kpi.purple .kpi-value { color: var(--accent2); }
-  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+.hint{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--accent-bg);
+  border:1px solid var(--accent-soft);border-radius:var(--radius-sm);font-size:12px;
+  color:var(--ink-2);margin-bottom:14px}
+.hint-icon{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-family:var(--font-num);font-weight:700;font-size:12px;flex-shrink:0}
+.hint kbd{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
+  font-family:var(--font-num);font-size:11px;color:var(--ink)}
 
-  /* Grid */
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .grid21 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .full { grid-column: 1 / -1; }
+.status-bar{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:var(--radius-sm);
+  font-size:12px;margin-bottom:18px;font-family:var(--font-num);transition:all .25s ease}
+.status-bar.idle{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--line)}
+.status-bar.loading{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-soft)}
+.status-bar.success{background:var(--green-soft);color:var(--green);border:1px solid #c2ecd4}
+.status-bar.error{background:var(--red-soft);color:var(--red);border:1px solid #f5c8d1}
 
-  /* Cards */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-  }
-  .card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .card-title::before {
-    content: '';
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
+.tabs{display:flex;gap:0;margin-bottom:22px;border-bottom:1px solid var(--line);
+  overflow-x:auto;overflow-y:hidden}
+.tab{padding:11px 18px;font-size:13px;font-weight:500;color:var(--ink-3);cursor:pointer;
+  border:none;background:transparent;font-family:var(--font);white-space:nowrap;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s ease;
+  display:inline-flex;align-items:center;gap:8px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.tab-count{font-family:var(--font-num);font-size:11px;color:var(--muted);
+  background:var(--surface-2);padding:1px 7px;border-radius:99px}
+.tab.active .tab-count{background:var(--accent-soft);color:var(--accent)}
 
-  /* Bar Charts */
-  .bar-group { display: flex; flex-direction: column; gap: 10px; }
-  .bar-item { display: flex; align-items: center; gap: 10px; }
-  .bar-label { font-size: 12px; color: var(--text); min-width: 100px; text-align: right; }
-  .bar-track { flex: 1; height: 10px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
-  .bar-count { font-size: 12px; color: var(--muted); min-width: 28px; }
+.clickable{cursor:pointer;position:relative;transition:all .15s ease}
+.clickable::after{content:'↗';position:absolute;top:10px;right:12px;font-size:13px;
+  color:var(--muted);opacity:0;transition:opacity .15s ease,transform .15s ease;font-family:var(--font-num)}
+.clickable:hover::after{opacity:1;transform:translate(2px,-2px)}
+.row-clickable{cursor:pointer;transition:background .15s ease}
+.row-clickable:hover{background:var(--bg-soft)}
 
-  /* Donut */
-  .donut-wrap { display: flex; align-items: center; gap: 20px; }
-  .donut-legend { display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+.kpi{position:relative;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px 20px 18px;box-shadow:var(--shadow-xs);overflow:hidden}
+.kpi:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:currentColor}
+.kpi.blue{color:var(--accent)}.kpi.green{color:var(--green)}
+.kpi.orange{color:var(--orange)}.kpi.red{color:var(--red)}.kpi.purple{color:var(--accent2)}
+.kpi-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.kpi-label{font-size:11.5px;color:var(--ink-3);font-weight:500;
+  text-transform:uppercase;letter-spacing:.6px}
+.kpi-tag{font-family:var(--font-num);font-size:10px;padding:2px 7px;border-radius:99px;font-weight:600}
+.kpi.blue .kpi-tag{background:var(--accent-soft);color:var(--accent)}
+.kpi.green .kpi-tag{background:var(--green-soft);color:var(--green)}
+.kpi.orange .kpi-tag{background:var(--orange-soft);color:var(--orange)}
+.kpi.red .kpi-tag{background:var(--red-soft);color:var(--red)}
+.kpi.purple .kpi-tag{background:var(--accent2-soft);color:var(--accent2)}
+.kpi-value{font-family:var(--font-num);font-size:36px;font-weight:600;line-height:1;
+  letter-spacing:-1px;color:var(--ink)}
+.kpi-sub{font-size:11.5px;color:var(--ink-3);margin-top:10px}
+.kpi-sub strong{color:var(--ink);font-weight:600}
 
-  /* Status Pills */
-  .pill {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 99px;
-    font-size: 11px;
-    font-weight: 600;
-  }
-  .pill.hired { background: rgba(34,217,138,0.15); color: var(--green); }
-  .pill.progress { background: rgba(79,139,255,0.15); color: var(--accent); }
-  .pill.cancel { background: rgba(255,79,107,0.12); color: var(--red); }
-  .pill.offer { background: rgba(255,154,60,0.15); color: var(--orange); }
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.grid21{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 24px;box-shadow:var(--shadow-xs)}
+.card-title{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:20px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  text-transform:uppercase;letter-spacing:.7px}
+.card-title .ttl{display:flex;align-items:center;gap:9px}
+.card-title .ttl::before{content:'';width:16px;height:2px;background:var(--accent);border-radius:2px}
+.card-title .meta{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.5px;font-family:var(--font-num)}
 
-  /* Recruiter Table */
-  .table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .table th { text-align: left; color: var(--muted); font-weight: 500; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.4px; }
-  .table td { padding: 10px 12px; border-bottom: 1px solid rgba(37,42,71,0.5); }
-  .table tr:last-child td { border-bottom: none; }
-  .table tr:hover td { background: rgba(79,139,255,0.04); }
+.bar-group{display:flex;flex-direction:column;gap:8px}
+.bar-item{display:grid;grid-template-columns:100px 1fr 36px;align-items:center;gap:14px;
+  padding:6px 8px;border-radius:var(--radius-sm);transition:background .15s ease;cursor:pointer}
+.bar-item:hover{background:var(--bg-soft)}
+.bar-item.wide{grid-template-columns:180px 1fr 36px}
+.bar-label{font-size:12.5px;color:var(--ink-2);font-weight:500;text-align:right}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:99px;width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
+.bar-count{font-family:var(--font-num);font-size:13px;color:var(--ink);font-weight:600;text-align:right}
 
-  /* Mini bar */
-  .mini-bar { display: flex; height: 6px; border-radius: 99px; overflow: hidden; gap: 1px; min-width: 80px; }
-  .mini-fill { height: 100%; }
+.donut-wrap{display:flex;align-items:center;gap:22px}
+.donut-svg circle.seg{transition:stroke-width .15s ease;cursor:pointer}
+.donut-svg circle.seg:hover{stroke-width:18}
+.donut-legend{display:flex;flex-direction:column;gap:4px;flex:1}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-2);
+  padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:background .15s ease}
+.legend-item:hover{background:var(--bg-soft)}
+.dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.legend-val{margin-left:auto;font-family:var(--font-num);font-weight:600;font-size:13px;color:var(--ink)}
 
-  /* Progress ring */
-  .ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .ring-label { font-size: 11px; color: var(--muted); text-align: center; }
-  .ring-val { font-size: 15px; font-weight: 700; }
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:600;font-family:var(--font-num)}
+.pill.hired{background:var(--green-soft);color:var(--green)}
 
-  /* Source list */
-  .source-list { display: flex; flex-direction: column; gap: 8px; }
-  .source-item { display: flex; align-items: center; justify-content: space-between; }
-  .source-name { font-size: 12.5px; }
-  .source-bar-wrap { flex: 1; margin: 0 10px; height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
-  .source-num { font-size: 12px; color: var(--muted); min-width: 20px; text-align: right; }
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th{text-align:left;color:var(--muted);font-weight:500;padding:10px 14px;
+  border-bottom:1px solid var(--line);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px}
+.table td{padding:14px 14px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.table td.num{font-family:var(--font-num);font-weight:500}
+.table tr:last-child td{border-bottom:none}
+.table td strong{color:var(--ink);font-weight:600}
+.mini-bar{display:flex;height:6px;border-radius:99px;overflow:hidden;gap:1px;min-width:90px;background:var(--surface-2)}
+.mini-fill{height:100%;transition:width .9s cubic-bezier(.22,1,.36,1)}
 
-  /* Timeline / month bars */
-  .month-chart { display: flex; align-items: flex-end; gap: 6px; height: 70px; }
-  .month-col { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
-  .month-bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; transition: height 0.5s ease; }
-  .month-name { font-size: 10px; color: var(--muted); }
-  .month-num { font-size: 10px; color: var(--text); font-weight: 600; }
+.source-list{display:flex;flex-direction:column;gap:4px}
+.source-item{display:grid;grid-template-columns:200px 1fr 32px;align-items:center;gap:14px;
+  padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:background .15s ease}
+.source-item:hover{background:var(--bg-soft)}
+.source-name{font-size:13px;color:var(--ink-2)}
+.source-bar-wrap{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.source-num{font-family:var(--font-num);font-size:13px;font-weight:600;color:var(--ink);text-align:right}
 
-  /* Footer */
-  .footer { margin-top: 24px; text-align: center; color: var(--muted); font-size: 11px; }
+.month-chart{display:flex;align-items:flex-end;gap:14px;height:150px;padding:10px 4px 0;position:relative}
+.month-chart::before{content:'';position:absolute;bottom:22px;left:0;right:0;height:1px;background:var(--line)}
+.month-col{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;height:100%;
+  justify-content:flex-end;position:relative;cursor:pointer;padding:4px;border-radius:var(--radius-sm);
+  transition:background .15s ease}
+.month-col:hover{background:var(--bg-soft)}
+.month-num{font-family:var(--font-num);font-size:13px;color:var(--ink);font-weight:600}
+.month-bar{width:100%;max-width:56px;border-radius:4px 4px 0 0;min-height:4px;
+  transition:height .9s cubic-bezier(.22,1,.36,1),filter .15s ease}
+.month-col:hover .month-bar{filter:brightness(.93)}
+.month-name{font-size:11px;color:var(--muted);margin-top:4px;font-family:var(--font-num)}
 
-  svg text { font-family: var(--font); }
+.pill-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;text-align:left;min-width:120px;cursor:pointer;transition:all .15s ease}
+.pill-card:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.pill-card .pc-val{font-family:var(--font-num);font-size:28px;font-weight:600;line-height:1;letter-spacing:-.5px}
+.pill-card .pc-label{font-size:11.5px;color:var(--ink-3);margin-top:8px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.4px}
+.pc-blue .pc-val{color:var(--accent)}.pc-green .pc-val{color:var(--green)}
+.pc-orange .pc-val{color:var(--orange)}.pc-red .pc-val{color:var(--red)}
+.pc-purple .pc-val{color:var(--accent2)}.pc-yellow .pc-val{color:var(--yellow)}
+
+.footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);text-align:center;
+  color:var(--muted);font-size:11px;font-family:var(--font-num)}
+.footer strong{color:var(--ink-3);font-weight:600}
+
+.backdrop{position:fixed;inset:0;background:rgba(10,14,26,.32);backdrop-filter:blur(2px);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:90}
+.backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;width:480px;max-width:92vw;height:100vh;
+  background:var(--surface);border-left:1px solid var(--line);box-shadow:var(--shadow-lg);
+  transform:translateX(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);z-index:100;
+  display:flex;flex-direction:column;overflow:hidden}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:22px 26px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.drawer-eyebrow{font-size:11px;color:var(--muted);font-family:var(--font-num);
+  text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;
+  display:inline-flex;align-items:center;gap:6px}
+.drawer-eyebrow::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.drawer-title{font-size:19px;font-weight:700;color:var(--ink);line-height:1.3}
+.drawer-close{background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  width:32px;height:32px;border-radius:8px;cursor:pointer;display:grid;place-items:center;
+  flex-shrink:0;font-size:16px;transition:all .15s ease}
+.drawer-close:hover{background:var(--surface-3);color:var(--ink)}
+.drawer-body{padding:22px 26px 30px;overflow-y:auto;flex:1}
+.drawer-hero{display:flex;align-items:baseline;gap:14px;padding:18px 20px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px}
+.drawer-hero-val{font-family:var(--font-num);font-size:40px;font-weight:600;line-height:1;
+  letter-spacing:-1.5px;color:var(--ink)}
+.drawer-hero-unit{font-size:13px;color:var(--ink-3);font-family:var(--font-num)}
+.drawer-hero-delta{margin-left:auto;font-size:12px;color:var(--muted);text-align:right}
+.drawer-section{margin-bottom:22px}
+.drawer-section:last-child{margin-bottom:0}
+.drawer-section h4{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
+  margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
+.drawer-section h4::before{content:'';width:3px;height:12px;background:var(--accent);border-radius:2px}
+.drawer-section p{font-size:13.5px;color:var(--ink-2);line-height:1.65}
+.drawer-section p strong{color:var(--ink);font-weight:600}
+.drawer-list{display:flex;flex-direction:column;gap:8px}
+.drawer-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-sm);font-size:13px}
+.drawer-row .lbl{color:var(--ink-2)}
+.drawer-row .val{font-family:var(--font-num);font-weight:600;color:var(--ink)}
+.drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.drawer-stat{padding:12px 14px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-sm)}
+.drawer-stat .v{font-family:var(--font-num);font-size:22px;font-weight:600;color:var(--ink);line-height:1}
+.drawer-stat .l{font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.4px}
+.drawer-formula{font-family:var(--font-num);font-size:12px;padding:12px 14px;background:var(--ink);
+  color:#fff;border-radius:var(--radius-sm);line-height:1.7}
+.drawer-formula .op{color:#69a3ff}.drawer-formula .num{color:#46e2a0}
+.drawer-callout{padding:14px 16px;background:var(--accent-bg);border:1px solid var(--accent-soft);
+  border-radius:var(--radius);font-size:13px;color:var(--ink-2);line-height:1.65}
+.drawer-callout strong{color:var(--accent);font-weight:600}
+.drawer-callout.warn{background:#fff8eb;border-color:#fcecc7}
+.drawer-callout.warn strong{color:var(--orange)}
+.drawer-callout.error{background:var(--red-soft);border-color:#f5c8d1}
+.drawer-callout.error strong{color:var(--red)}
+.drawer-callout.success{background:var(--green-soft);border-color:#c2ecd4}
+.drawer-callout.success strong{color:var(--green)}
+.drawer-input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius-sm);
+  font-family:var(--font-num);font-size:12px;color:var(--ink);background:var(--bg-soft);margin-top:8px}
+.drawer-input:focus{outline:none;border-color:var(--accent)}
+
+.fade-in{animation:fadeUp .5s cubic-bezier(.22,1,.36,1) both}
+.fade-in.d1{animation-delay:.04s}.fade-in.d2{animation-delay:.08s}
+.fade-in.d3{animation-delay:.12s}.fade-in.d4{animation-delay:.16s}
+.fade-in.d5{animation-delay:.20s}.fade-in.d6{animation-delay:.24s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.section{display:none}
+.section.active{display:block;animation:fadeUp .4s ease both}
+
+@media(max-width:1280px){
+  .kpi-row{grid-template-columns:repeat(3,1fr)}
+  .grid3,.grid21{grid-template-columns:1fr 1fr}
+}
+@media(max-width:880px){
+  body{padding:18px}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .grid3,.grid21{grid-template-columns:1fr}
+  .brand h1{font-size:16px}
+  .source-item{grid-template-columns:130px 1fr 32px}
+  .bar-item{grid-template-columns:80px 1fr 32px}
+  .bar-item.wide{grid-template-columns:140px 1fr 32px}
+  .drawer{width:100%}
+}
+@media(max-width:520px){.kpi-row{grid-template-columns:1fr}.kpi-value{font-size:28px}}
+@media print{
+  .top-meta,.tabs,.hint,.status-bar,.drawer,.backdrop{display:none!important}
+  .section{display:block!important;page-break-inside:avoid}
+  .card{break-inside:avoid}
+  body{background:#fff;padding:12px}
+}
+svg text{font-family:var(--font-num)}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-left">
-    <h1>📋 HR Recruitment Dashboard</h1>
-    <p>TVP Group · สรุปผลการสรรหาบุคลากร ปีงบประมาณ 2569</p>
+<div class="topbar fade-in">
+  <div class="brand">
+    <div class="brand-mark">HR</div>
+    <div>
+      <h1>Recruitment Dashboard</h1>
+      <p id="brandSub">TVP GROUP · FY 2569 · สรุปผลการสรรหาบุคลากร</p>
+    </div>
   </div>
-  <div class="badge">อัปเดต <span>29 เมษายน 2569</span> · ข้อมูล <span>236</span> รายการ</div>
-</div>
-
-<!-- KPI Row -->
-<div class="kpi-row">
-  <div class="kpi blue">
-    <div class="kpi-label">📌 อัตราที่ร้องขอทั้งหมด</div>
-    <div class="kpi-value">236</div>
-    <div class="kpi-sub">ปี 2568–2569</div>
-  </div>
-  <div class="kpi green">
-    <div class="kpi-label">✅ รับเข้าทำงานแล้ว</div>
-    <div class="kpi-value">41</div>
-    <div class="kpi-sub">คิดเป็น 55% ของที่ดำเนินการ</div>
-  </div>
-  <div class="kpi orange">
-    <div class="kpi-label">🔄 กำลังดำเนินการ</div>
-    <div class="kpi-value">28</div>
-    <div class="kpi-sub">อยู่ระหว่างสรรหา / เจรจา</div>
-  </div>
-  <div class="kpi red">
-    <div class="kpi-label">⏳ ค้างรับ</div>
-    <div class="kpi-value">26</div>
-    <div class="kpi-sub">รอการบรรจุ</div>
-  </div>
-  <div class="kpi purple">
-    <div class="kpi-label">⚡ Avg. Days to Hire</div>
-    <div class="kpi-value">28</div>
-    <div class="kpi-sub">วัน (เฉพาะรายที่สรรหาสำเร็จ)</div>
+  <div class="top-meta">
+    <div class="select-wrap">
+      <select class="select" id="yearSelect">
+        <option value="2569">ปีงบประมาณ 2569</option>
+        <option value="2568">ปีงบประมาณ 2568</option>
+        <option value="2567">ปีงบประมาณ 2567</option>
+      </select>
+    </div>
+    <div class="chip"><span class="lbl">UPDATED</span><span class="val" id="lastUpdate">29 เม.ย. 2569</span></div>
+    <div class="chip"><span class="lbl">TOTAL</span><span class="val" id="totalChip">236</span></div>
+    <button class="btn primary" id="updateBtn">⟳ Update</button>
+    <button class="btn" id="configBtn" title="ตั้งค่า URL Google Sheets">⚙</button>
+    <button class="btn" onclick="window.print()">⎙ Print</button>
   </div>
 </div>
 
-<!-- Row 2: Status donut + BU bar + Source -->
-<div class="grid3">
+<div class="hint fade-in d1">
+  <div class="hint-icon">i</div>
+  <div>คลิกที่ <strong>KPI</strong>, <strong>กราฟ</strong> หรือ <strong>รายการใด ๆ</strong> เพื่อดูคำอธิบาย · กด <strong>⟳ Update</strong> เพื่อดึงข้อมูลล่าสุดจาก Google Sheets · ปิด drawer ด้วย <kbd>ESC</kbd></div>
+</div>
 
-  <!-- Recruitment Status -->
-  <div class="card">
-    <div class="card-title">สถานะการสรรหา</div>
-    <div class="donut-wrap">
-      <svg width="110" height="110" viewBox="0 0 110 110">
-        <!-- Donut chart: hired=41, inprogress=28, pending=26, cancel=11 total active=106 -->
-        <!-- Segments (stroke-dasharray on r=40 circle, circumference=251.2) -->
-        <circle cx="55" cy="55" r="40" fill="none" stroke="#1a1e35" stroke-width="18"/>
-        <!-- hired: 41/80 = 51.3% = 128.7 -->
-        <circle cx="55" cy="55" r="40" fill="none" stroke="#22d98a" stroke-width="18"
-          stroke-dasharray="128.7 122.5" stroke-dashoffset="62.8" stroke-linecap="butt"/>
-        <!-- inprogress: 28/80 = 35% = 87.9 offset=62.8-128.7=-65.9 => 314.2-65.9=248.3 -->
-        <circle cx="55" cy="55" r="40" fill="none" stroke="#4f8bff" stroke-width="18"
-          stroke-dasharray="87.9 163.3" stroke-dashoffset="-65.9" stroke-linecap="butt"/>
-        <!-- cancel: 11/80=13.7%=34.5 -->
-        <circle cx="55" cy="55" r="40" fill="none" stroke="#ff4f6b" stroke-width="18"
-          stroke-dasharray="34.5 216.7" stroke-dashoffset="-153.8" stroke-linecap="butt"/>
-        <text x="55" y="51" text-anchor="middle" fill="#e4e8ff" font-size="16" font-weight="700">80</text>
-        <text x="55" y="64" text-anchor="middle" fill="#7a82ab" font-size="9">รายการ</text>
-      </svg>
-      <div class="donut-legend">
-        <div class="legend-item"><div class="dot" style="background:#22d98a"></div>รับเข้าทำงาน <strong style="margin-left:auto;color:#22d98a">41</strong></div>
-        <div class="legend-item"><div class="dot" style="background:#4f8bff"></div>กำลังดำเนินการ <strong style="margin-left:auto;color:#4f8bff">28</strong></div>
-        <div class="legend-item"><div class="dot" style="background:#ffd44f"></div>ค้างรับ <strong style="margin-left:auto;color:#ffd44f">26</strong></div>
-        <div class="legend-item"><div class="dot" style="background:#ff4f6b"></div>ชะลอ/ยกเลิก <strong style="margin-left:auto;color:#ff4f6b">11</strong></div>
+<div class="status-bar idle" id="statusBar">
+  <span id="statusText">พร้อมใช้งาน · กำลังแสดงข้อมูลที่บันทึกไว้ (DataSheet · 29 เม.ย. 2569)</span>
+</div>
+
+<div class="tabs fade-in d2">
+  <button class="tab active" data-tab="overview">ภาพรวม <span class="tab-count">5</span></button>
+  <button class="tab" data-tab="bu">Business Unit <span class="tab-count">6</span></button>
+  <button class="tab" data-tab="recruiter">Recruiter <span class="tab-count">5</span></button>
+  <button class="tab" data-tab="source">แหล่งที่มา <span class="tab-count">7</span></button>
+  <button class="tab" data-tab="pending">ค้างรับ <span class="tab-count">26</span></button>
+</div>
+
+<div class="section active" data-section="overview">
+  <div class="kpi-row">
+    <div class="kpi blue clickable fade-in d1" data-detail="kpi-total"><div class="kpi-head"><div class="kpi-label">อัตราที่ร้องขอ</div><div class="kpi-tag">TOTAL</div></div><div class="kpi-value mono" data-count="236">0</div><div class="kpi-sub">ปี 2568–2569</div></div>
+    <div class="kpi green clickable fade-in d2" data-detail="kpi-hired"><div class="kpi-head"><div class="kpi-label">รับเข้าทำงานแล้ว</div><div class="kpi-tag">HIRED</div></div><div class="kpi-value mono" data-count="41">0</div><div class="kpi-sub"><strong>55%</strong> ของที่ดำเนินการ</div></div>
+    <div class="kpi orange clickable fade-in d3" data-detail="kpi-wip"><div class="kpi-head"><div class="kpi-label">กำลังดำเนินการ</div><div class="kpi-tag">WIP</div></div><div class="kpi-value mono" data-count="28">0</div><div class="kpi-sub">อยู่ระหว่างสรรหา / เจรจา</div></div>
+    <div class="kpi red clickable fade-in d4" data-detail="kpi-pending"><div class="kpi-head"><div class="kpi-label">ค้างรับ</div><div class="kpi-tag">PENDING</div></div><div class="kpi-value mono" data-count="26">0</div><div class="kpi-sub">รอการบรรจุ</div></div>
+    <div class="kpi purple clickable fade-in d5" data-detail="kpi-days"><div class="kpi-head"><div class="kpi-label">Avg. Days to Hire</div><div class="kpi-tag">DAYS</div></div><div class="kpi-value mono" data-count="28">0</div><div class="kpi-sub">เฉพาะรายที่สรรหาสำเร็จ</div></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card fade-in d1"><div class="card-title"><span class="ttl">สถานะการสรรหา</span><span class="meta">80 ITEMS</span></div>
+      <div class="donut-wrap"><svg class="donut-svg" width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="48" fill="none" stroke="var(--surface-2)" stroke-width="12"/>
+        <circle class="seg" cx="65" cy="65" r="48" fill="none" stroke="var(--green)" stroke-width="12" stroke-dasharray="154.4 147.1" stroke-dashoffset="0" transform="rotate(-90 65 65)" data-detail="status-hired"/>
+        <circle class="seg" cx="65" cy="65" r="48" fill="none" stroke="var(--accent)" stroke-width="12" stroke-dasharray="105.5 196" stroke-dashoffset="-154.4" transform="rotate(-90 65 65)" data-detail="status-wip"/>
+        <circle class="seg" cx="65" cy="65" r="48" fill="none" stroke="var(--yellow)" stroke-width="12" stroke-dasharray="98 203.5" stroke-dashoffset="-259.9" transform="rotate(-90 65 65)" data-detail="status-pending"/>
+        <circle class="seg" cx="65" cy="65" r="48" fill="none" stroke="var(--red)" stroke-width="12" stroke-dasharray="41.4 260.1" stroke-dashoffset="-357.9" transform="rotate(-90 65 65)" data-detail="status-cancel"/>
+        <text x="65" y="62" text-anchor="middle" fill="var(--ink)" font-size="22" font-weight="600">80</text>
+        <text x="65" y="79" text-anchor="middle" fill="var(--muted)" font-size="9.5">รายการ</text></svg>
+        <div class="donut-legend">
+          <div class="legend-item" data-detail="status-hired"><span class="dot" style="background:var(--green)"></span>รับเข้าทำงาน<span class="legend-val">41</span></div>
+          <div class="legend-item" data-detail="status-wip"><span class="dot" style="background:var(--accent)"></span>กำลังดำเนินการ<span class="legend-val">28</span></div>
+          <div class="legend-item" data-detail="status-pending"><span class="dot" style="background:var(--yellow)"></span>ค้างรับ<span class="legend-val">26</span></div>
+          <div class="legend-item" data-detail="status-cancel"><span class="dot" style="background:var(--red)"></span>ชะลอ/ยกเลิก<span class="legend-val">11</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in d2"><div class="card-title"><span class="ttl">อัตราร้องขอรายเดือน</span><span class="meta">Q1–APR</span></div>
+      <div class="month-chart">
+        <div class="month-col" data-detail="month-jan"><div class="month-num">30</div><div class="month-bar" data-h="100" style="background:var(--accent)"></div><div class="month-name">JAN</div></div>
+        <div class="month-col" data-detail="month-feb"><div class="month-num">17</div><div class="month-bar" data-h="57" style="background:var(--green)"></div><div class="month-name">FEB</div></div>
+        <div class="month-col" data-detail="month-mar"><div class="month-num">16</div><div class="month-bar" data-h="53" style="background:var(--orange)"></div><div class="month-name">MAR</div></div>
+        <div class="month-col" data-detail="month-apr"><div class="month-num">17</div><div class="month-bar" data-h="57" style="background:var(--accent2)"></div><div class="month-name">APR</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--font-num)"><span>AVG <strong style="color:var(--ink)">20</strong>/MO</span><span>TOTAL <strong style="color:var(--accent)">80</strong></span></div>
+    </div>
+
+    <div class="card clickable fade-in d3" data-detail="sla"><div class="card-title"><span class="ttl">SLA Compliance</span><span class="meta">71 ITEMS</span></div>
+      <div style="text-align:center;margin-bottom:14px"><svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="55" fill="none" stroke="var(--surface-2)" stroke-width="10"/>
+        <circle cx="70" cy="70" r="55" fill="none" stroke="var(--green)" stroke-width="10" stroke-dasharray="262.7 82.6" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 70 70)"/>
+        <text x="70" y="68" text-anchor="middle" fill="var(--ink)" font-size="28" font-weight="600">76%</text>
+        <text x="70" y="86" text-anchor="middle" fill="var(--muted)" font-size="10">ไม่เกิน SLA</text></svg>
+      </div>
+      <div style="display:flex;justify-content:space-around;text-align:center;gap:10px">
+        <div><div class="mono" style="font-size:22px;font-weight:600;color:var(--green)">54</div><div style="font-size:11px;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.4px">ภายในเวลา</div></div>
+        <div style="width:1px;background:var(--line)"></div>
+        <div><div class="mono" style="font-size:22px;font-weight:600;color:var(--red)">17</div><div style="font-size:11px;color:var(--ink-3);margin-top:4px;text-transform:uppercase;letter-spacing:.4px">เกินเวลา</div></div>
       </div>
     </div>
   </div>
 
-  <!-- BU Bar -->
-  <div class="card">
-    <div class="card-title">จำนวนอัตราตาม BU</div>
-    <div class="bar-group">
-      <div class="bar-item">
-        <div class="bar-label">TVP</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent)"></div></div>
-        <div class="bar-count">50</div>
+  <div class="grid3">
+    <div class="card fade-in d1"><div class="card-title"><span class="ttl">ประเภทการจ้างงาน</span><span class="meta">80 ITEMS</span></div>
+      <div style="display:flex;gap:12px">
+        <div class="pill-card pc-blue" style="flex:1" data-detail="job-permanent"><div class="pc-val">68</div><div class="pc-label">Permanent</div></div>
+        <div class="pill-card pc-orange" style="flex:1" data-detail="job-temporary"><div class="pc-val">12</div><div class="pc-label">Temporary</div></div>
       </div>
-      <div class="bar-item">
-        <div class="bar-label">TRP</div>
-        <div class="bar-track"><div class="bar-fill" style="width:28%;background:var(--accent2)"></div></div>
-        <div class="bar-count">14</div>
+      <div style="margin-top:16px;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;display:flex">
+        <div style="height:100%;width:85%;background:var(--accent)"></div>
+        <div style="height:100%;width:15%;background:var(--orange)"></div>
       </div>
-      <div class="bar-item">
-        <div class="bar-label">TVP-Ez</div>
-        <div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--green)"></div></div>
-        <div class="bar-count">11</div>
+    </div>
+
+    <div class="card fade-in d2"><div class="card-title"><span class="ttl">ประเภทการสรรหา</span><span class="meta">77 ITEMS</span></div>
+      <div class="bar-group">
+        <div class="bar-item wide" data-detail="rep-resign"><div class="bar-label">ทดแทนลาออก</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:var(--red)"></div></div><div class="bar-count">43</div></div>
+        <div class="bar-item wide" data-detail="rep-budget"><div class="bar-label">ตามแผนงบประมาณ</div><div class="bar-track"><div class="bar-fill" data-w="56" style="background:var(--accent)"></div></div><div class="bar-count">24</div></div>
+        <div class="bar-item wide" data-detail="rep-restruct-extra"><div class="bar-label">โครงสร้างใหม่ (นอกแผน)</div><div class="bar-track"><div class="bar-fill" data-w="14" style="background:var(--orange)"></div></div><div class="bar-count">6</div></div>
+        <div class="bar-item wide" data-detail="rep-restruct"><div class="bar-label">โครงสร้างใหม่</div><div class="bar-track"><div class="bar-fill" data-w="7" style="background:var(--yellow)"></div></div><div class="bar-count">3</div></div>
+        <div class="bar-item wide" data-detail="rep-transfer"><div class="bar-label">ทดแทนโอนย้าย</div><div class="bar-track"><div class="bar-fill" data-w="2" style="background:var(--muted)"></div></div><div class="bar-count">1</div></div>
       </div>
-      <div class="bar-item">
-        <div class="bar-label">TVP-Uc</div>
-        <div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--orange)"></div></div>
-        <div class="bar-count">3</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">LAC-RA</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--yellow)"></div></div>
-        <div class="bar-count">1</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">BIZ NEX</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--red)"></div></div>
-        <div class="bar-count">1</div>
+    </div>
+
+    <div class="card fade-in d3"><div class="card-title"><span class="ttl">หน่วยงานร้องขอมากสุด</span><span class="meta">TOP 5</span></div>
+      <div class="bar-group">
+        <div class="bar-item wide" data-detail="dept-insur"><div class="bar-label" style="text-align:left">01 · ฝ่ายนายหน้าประกันภัย</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:var(--accent)"></div></div><div class="bar-count">7</div></div>
+        <div class="bar-item wide" data-detail="dept-acct"><div class="bar-label" style="text-align:left">02 · ส่วนงานบัญชี</div><div class="bar-track"><div class="bar-fill" data-w="86" style="background:var(--green)"></div></div><div class="bar-count">6</div></div>
+        <div class="bar-item wide" data-detail="dept-ezt1"><div class="bar-label" style="text-align:left">03 · อีซี่คาร์ (ทีม 1)</div><div class="bar-track"><div class="bar-fill" data-w="71" style="background:var(--orange)"></div></div><div class="bar-count">5</div></div>
+        <div class="bar-item wide" data-detail="dept-short"><div class="bar-label" style="text-align:left">04 · บุคคลระยะสั้น สุขุมวิท</div><div class="bar-track"><div class="bar-fill" data-w="57" style="background:var(--accent2)"></div></div><div class="bar-count">4</div></div>
+        <div class="bar-item wide" data-detail="dept-flexi"><div class="bar-label" style="text-align:left">05 · อีซี่คาร์ (Flexi)</div><div class="bar-track"><div class="bar-fill" data-w="57" style="background:var(--cyan)"></div></div><div class="bar-count">4</div></div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Candidate Source -->
-  <div class="card">
-    <div class="card-title">แหล่งที่มาของ Candidate</div>
+<div class="section" data-section="bu">
+  <div class="grid21">
+    <div class="card fade-in d1"><div class="card-title"><span class="ttl">จำนวนอัตราตาม Business Unit</span><span class="meta">6 BU · 80 ITEMS</span></div>
+      <div class="bar-group">
+        <div class="bar-item" data-detail="bu-tvp"><div class="bar-label">TVP</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:var(--accent)"></div></div><div class="bar-count">50</div></div>
+        <div class="bar-item" data-detail="bu-trp"><div class="bar-label">TRP</div><div class="bar-track"><div class="bar-fill" data-w="28" style="background:var(--accent2)"></div></div><div class="bar-count">14</div></div>
+        <div class="bar-item" data-detail="bu-ez"><div class="bar-label">TVP-Ez</div><div class="bar-track"><div class="bar-fill" data-w="22" style="background:var(--green)"></div></div><div class="bar-count">11</div></div>
+        <div class="bar-item" data-detail="bu-uc"><div class="bar-label">TVP-Uc</div><div class="bar-track"><div class="bar-fill" data-w="6" style="background:var(--orange)"></div></div><div class="bar-count">3</div></div>
+        <div class="bar-item" data-detail="bu-lac"><div class="bar-label">LAC-RA</div><div class="bar-track"><div class="bar-fill" data-w="2" style="background:var(--yellow)"></div></div><div class="bar-count">1</div></div>
+        <div class="bar-item" data-detail="bu-biz"><div class="bar-label">BIZ NEX</div><div class="bar-track"><div class="bar-fill" data-w="2" style="background:var(--red)"></div></div><div class="bar-count">1</div></div>
+      </div>
+    </div>
+    <div class="card fade-in d2"><div class="card-title"><span class="ttl">สัดส่วน BU</span><span class="meta">%</span></div>
+      <div style="text-align:center;margin-bottom:14px"><svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="60" fill="none" stroke="var(--accent)" stroke-width="14" stroke-dasharray="235.6 141.4" stroke-dashoffset="0" transform="rotate(-90 85 85)"/>
+        <circle cx="85" cy="85" r="60" fill="none" stroke="var(--accent2)" stroke-width="14" stroke-dasharray="66 311" stroke-dashoffset="-235.6" transform="rotate(-90 85 85)"/>
+        <circle cx="85" cy="85" r="60" fill="none" stroke="var(--green)" stroke-width="14" stroke-dasharray="51.8 325.2" stroke-dashoffset="-301.6" transform="rotate(-90 85 85)"/>
+        <circle cx="85" cy="85" r="60" fill="none" stroke="var(--orange)" stroke-width="14" stroke-dasharray="14.1 363" stroke-dashoffset="-353.4" transform="rotate(-90 85 85)"/>
+        <circle cx="85" cy="85" r="60" fill="none" stroke="var(--yellow)" stroke-width="14" stroke-dasharray="9.4 367.6" stroke-dashoffset="-367.5" transform="rotate(-90 85 85)"/>
+        <text x="85" y="82" text-anchor="middle" fill="var(--ink)" font-size="24" font-weight="600">80</text>
+        <text x="85" y="100" text-anchor="middle" fill="var(--muted)" font-size="10">รายการ</text></svg></div>
+      <div style="display:grid;grid-template-columns:1fr;gap:8px;font-size:12px">
+        <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:var(--accent)"></span>TVP <strong class="mono" style="margin-left:auto">62%</strong></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:var(--accent2)"></span>TRP <strong class="mono" style="margin-left:auto">18%</strong></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:var(--green)"></span>TVP-Ez <strong class="mono" style="margin-left:auto">14%</strong></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:var(--orange)"></span>TVP-Uc <strong class="mono" style="margin-left:auto">4%</strong></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:var(--yellow)"></span>อื่น ๆ <strong class="mono" style="margin-left:auto">2%</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" data-section="recruiter">
+  <div class="card fade-in d1"><div class="card-title"><span class="ttl">ประสิทธิภาพ Recruiter</span><span class="meta">5 PEOPLE · SLA = OK / OVER</span></div>
+    <div style="overflow-x:auto"><table class="table"><thead><tr><th>ผู้รับผิดชอบ</th><th>ทั้งหมด</th><th>รับเข้าแล้ว</th><th>อัตราสำเร็จ</th><th>SLA</th><th style="min-width:140px">ประสิทธิภาพ</th></tr></thead><tbody>
+      <tr class="row-clickable" data-detail="rec-fluke"><td><strong>ฟลุ๊ค</strong></td><td class="num">26</td><td><span class="pill hired">15</span></td><td class="num"><strong>57.7%</strong></td><td class="num" style="color:var(--green)">✓ 23 / 2</td><td><div class="mini-bar"><div class="mini-fill" data-w="92" style="background:var(--green)"></div><div class="mini-fill" data-w="8" style="background:var(--red)"></div></div></td></tr>
+      <tr class="row-clickable" data-detail="rec-poj"><td><strong>พจน์</strong></td><td class="num">24</td><td><span class="pill hired">8</span></td><td class="num"><strong>33.3%</strong></td><td class="num" style="color:var(--orange)">! 10 / 9</td><td><div class="mini-bar"><div class="mini-fill" data-w="53" style="background:var(--green)"></div><div class="mini-fill" data-w="47" style="background:var(--red)"></div></div></td></tr>
+      <tr class="row-clickable" data-detail="rec-jom"><td><strong>จ๋อมแจ๋ม</strong></td><td class="num">18</td><td><span class="pill hired">7</span></td><td class="num"><strong>38.9%</strong></td><td class="num" style="color:var(--orange)">! 9 / 6</td><td><div class="mini-bar"><div class="mini-fill" data-w="60" style="background:var(--green)"></div><div class="mini-fill" data-w="40" style="background:var(--red)"></div></div></td></tr>
+      <tr class="row-clickable" data-detail="rec-nay"><td><strong>เน</strong></td><td class="num">7</td><td><span class="pill hired">7</span></td><td class="num"><strong style="color:var(--green)">100%</strong></td><td class="num" style="color:var(--green)">✓ 7 / 0</td><td><div class="mini-bar"><div class="mini-fill" data-w="100" style="background:var(--green)"></div></div></td></tr>
+      <tr class="row-clickable" data-detail="rec-gem"><td><strong>เจม</strong></td><td class="num">5</td><td><span class="pill hired">4</span></td><td class="num"><strong style="color:var(--green)">80%</strong></td><td class="num" style="color:var(--green)">✓ 5 / 0</td><td><div class="mini-bar"><div class="mini-fill" data-w="100" style="background:var(--green)"></div></div></td></tr>
+    </tbody></table></div>
+    <p style="font-size:11px;color:var(--ink-3);margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--font-num)"><strong style="color:var(--ink-2)">SLA</strong> = ภายในเวลา / เกินเวลา · TOP <strong style="color:var(--green)">เน · 100% HIT</strong> · คลิกแถวเพื่อดูรายละเอียด</p>
+  </div>
+</div>
+
+<div class="section" data-section="source">
+  <div class="card fade-in d1"><div class="card-title"><span class="ttl">แหล่งที่มาของ Candidate</span><span class="meta">40 ITEMS · 7 CHANNELS</span></div>
     <div class="source-list">
-      <div class="source-item">
-        <div class="source-name">👥 หัวหน้า/เพื่อนแนะนำ</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:100%;height:6px;background:#22d98a;border-radius:99px"></div></div>
-        <div class="source-num">14</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">🌐 JobThai</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:64%;height:6px;background:#4f8bff;border-radius:99px"></div></div>
-        <div class="source-num">9</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">🌐 JobsDB</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:36%;height:6px;background:#7c5cfc;border-radius:99px"></div></div>
-        <div class="source-num">5</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">🏢 Agency</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:21%;height:6px;background:#ff9a3c;border-radius:99px"></div></div>
-        <div class="source-num">3</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">📘 Facebook</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:21%;height:6px;background:#1877f2;border-radius:99px"></div></div>
-        <div class="source-num">3</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">🔗 JobBKK</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:21%;height:6px;background:#ffd44f;border-radius:99px"></div></div>
-        <div class="source-num">3</div>
-      </div>
-      <div class="source-item">
-        <div class="source-name">♻️ พนักงานเก่า/โอนย้าย</div>
-        <div class="source-bar-wrap"><div class="bar-fill" style="width:14%;height:6px;background:#ff4f6b;border-radius:99px"></div></div>
-        <div class="source-num">3</div>
+      <div class="source-item" data-detail="src-internal"><div class="source-name">หัวหน้า / เพื่อนแนะนำ</div><div class="source-bar-wrap"><div class="bar-fill" data-w="100" style="height:6px;background:var(--green);border-radius:99px"></div></div><div class="source-num">14</div></div>
+      <div class="source-item" data-detail="src-jobthai"><div class="source-name">JobThai</div><div class="source-bar-wrap"><div class="bar-fill" data-w="64" style="height:6px;background:var(--accent);border-radius:99px"></div></div><div class="source-num">9</div></div>
+      <div class="source-item" data-detail="src-jobsdb"><div class="source-name">JobsDB</div><div class="source-bar-wrap"><div class="bar-fill" data-w="36" style="height:6px;background:var(--accent2);border-radius:99px"></div></div><div class="source-num">5</div></div>
+      <div class="source-item" data-detail="src-agency"><div class="source-name">Agency</div><div class="source-bar-wrap"><div class="bar-fill" data-w="21" style="height:6px;background:var(--orange);border-radius:99px"></div></div><div class="source-num">3</div></div>
+      <div class="source-item" data-detail="src-fb"><div class="source-name">Facebook</div><div class="source-bar-wrap"><div class="bar-fill" data-w="21" style="height:6px;background:var(--cyan);border-radius:99px"></div></div><div class="source-num">3</div></div>
+      <div class="source-item" data-detail="src-jobbkk"><div class="source-name">JobBKK</div><div class="source-bar-wrap"><div class="bar-fill" data-w="21" style="height:6px;background:var(--yellow);border-radius:99px"></div></div><div class="source-num">3</div></div>
+      <div class="source-item" data-detail="src-rehire"><div class="source-name">พนักงานเก่า / โอนย้าย</div><div class="source-bar-wrap"><div class="bar-fill" data-w="21" style="height:6px;background:var(--red);border-radius:99px"></div></div><div class="source-num">3</div></div>
+    </div>
+    <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div class="pill-card pc-green" data-detail="grp-internal"><div class="pc-val">14</div><div class="pc-label">Internal Network</div></div>
+      <div class="pill-card pc-blue" data-detail="grp-online"><div class="pc-val">20</div><div class="pc-label">Online Job Board</div></div>
+      <div class="pill-card pc-orange" data-detail="grp-agency"><div class="pc-val">3</div><div class="pc-label">Agency</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" data-section="pending">
+  <div class="card fade-in d1"><div class="card-title"><span class="ttl">อัตราค้างรับ จำแนกตาม BU</span><span class="meta">26 ITEMS</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+      <div class="pill-card pc-blue" data-detail="pend-tvp"><div class="pc-val">16</div><div class="pc-label">TVP</div></div>
+      <div class="pill-card pc-green" data-detail="pend-ez"><div class="pc-val">7</div><div class="pc-label">TVP-Ez</div></div>
+      <div class="pill-card pc-purple" data-detail="pend-trp"><div class="pc-val">2</div><div class="pc-label">TRP</div></div>
+      <div class="pill-card pc-orange" data-detail="pend-uc"><div class="pc-val">1</div><div class="pc-label">TVP-Uc</div></div>
+    </div>
+    <div style="background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+      <div style="font-family:var(--font-num);font-size:11px;color:var(--red);background:var(--red-soft);padding:6px 10px;border-radius:4px;font-weight:600;flex-shrink:0">ALERT</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">ต้องติดตาม 26 อัตรา</div>
+        <div style="font-size:12.5px;color:var(--ink-3);line-height:1.6">อัตราที่ยังรอบรรจุพนักงาน ส่วนใหญ่อยู่ใน <strong style="color:var(--accent)">TVP (62%)</strong> และ <strong style="color:var(--green)">TVP-Ez (27%)</strong> ควรเร่งดำเนินการเพื่อปิดอัตราภายในกำหนด SLA</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Row 3: Recruiter performance + Replacement type + SLA -->
-<div class="grid21">
-
-  <!-- Recruiter Performance -->
-  <div class="card">
-    <div class="card-title">ประสิทธิภาพ Recruiter</div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ผู้รับผิดชอบ</th>
-          <th>ทั้งหมด</th>
-          <th>รับเข้าแล้ว</th>
-          <th>อัตราสำเร็จ</th>
-          <th>SLA</th>
-          <th>ประสิทธิภาพ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>ฟลุ๊ค</strong></td>
-          <td>26</td>
-          <td><span class="pill hired">15</span></td>
-          <td>57.7%</td>
-          <td style="color:var(--green)">✅ 23/2</td>
-          <td>
-            <div class="mini-bar">
-              <div class="mini-fill" style="width:92%;background:var(--green)"></div>
-              <div class="mini-fill" style="width:8%;background:var(--red)"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>พจน์</strong></td>
-          <td>24</td>
-          <td><span class="pill hired">8</span></td>
-          <td>33.3%</td>
-          <td style="color:var(--orange)">⚠️ 10/9</td>
-          <td>
-            <div class="mini-bar">
-              <div class="mini-fill" style="width:53%;background:var(--green)"></div>
-              <div class="mini-fill" style="width:47%;background:var(--red)"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>จ๋อมแจ๋ม</strong></td>
-          <td>18</td>
-          <td><span class="pill hired">7</span></td>
-          <td>38.9%</td>
-          <td style="color:var(--orange)">⚠️ 9/6</td>
-          <td>
-            <div class="mini-bar">
-              <div class="mini-fill" style="width:60%;background:var(--green)"></div>
-              <div class="mini-fill" style="width:40%;background:var(--red)"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>เน</strong></td>
-          <td>7</td>
-          <td><span class="pill hired">7</span></td>
-          <td>100%</td>
-          <td style="color:var(--green)">✅ 7/0</td>
-          <td>
-            <div class="mini-bar">
-              <div class="mini-fill" style="width:100%;background:var(--green)"></div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>เจม</strong></td>
-          <td>5</td>
-          <td><span class="pill hired">4</span></td>
-          <td>80%</td>
-          <td style="color:var(--green)">✅ 5/0</td>
-          <td>
-            <div class="mini-bar">
-              <div class="mini-fill" style="width:100%;background:var(--green)"></div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="font-size:10.5px;color:var(--muted);margin-top:10px">SLA = จำนวนที่ไม่เกิน / จำนวนที่เกิน</p>
-  </div>
-
-  <!-- SLA Summary -->
-  <div class="card">
-    <div class="card-title">SLA Compliance</div>
-    <div style="text-align:center;margin-bottom:14px">
-      <svg width="120" height="120" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#1a1e35" stroke-width="14"/>
-        <!-- 54/71 = 76% -->
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#22d98a" stroke-width="14"
-          stroke-dasharray="229.3 72" stroke-dashoffset="75.4" stroke-linecap="butt"/>
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#ff4f6b" stroke-width="14"
-          stroke-dasharray="72 229.3" stroke-dashoffset="-153.9" stroke-linecap="butt"/>
-        <text x="60" y="55" text-anchor="middle" fill="#e4e8ff" font-size="18" font-weight="700">76%</text>
-        <text x="60" y="70" text-anchor="middle" fill="#7a82ab" font-size="9.5">ไม่เกิน SLA</text>
-      </svg>
-    </div>
-    <div style="display:flex;justify-content:space-around;text-align:center">
-      <div>
-        <div style="font-size:22px;font-weight:700;color:var(--green)">54</div>
-        <div style="font-size:11px;color:var(--muted)">ไม่เกิน SLA</div>
-      </div>
-      <div>
-        <div style="font-size:22px;font-weight:700;color:var(--red)">17</div>
-        <div style="font-size:11px;color:var(--muted)">เกิน SLA</div>
-      </div>
-    </div>
-  </div>
-
+<div class="footer fade-in d6">
+  <strong>HR RECRUITMENT DASHBOARD · TVP GROUP</strong> · ข้อมูล ณ <span id="footerDate">29 เม.ย. 2569</span> · SOURCE: DataSheet · <span id="footerTotal">236</span> RECORDS
 </div>
 
-<!-- Row 4: Requests by month + Replacement type + Job type -->
-<div class="grid3">
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer-head"><div><div class="drawer-eyebrow" id="drawerEyebrow">DETAIL</div><div class="drawer-title" id="drawerTitle">—</div></div><button class="drawer-close" id="drawerClose" aria-label="ปิด">✕</button></div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
 
-  <!-- Requests by month -->
-  <div class="card">
-    <div class="card-title">อัตราร้องขอรายเดือน</div>
-    <div class="month-chart" style="align-items:flex-end;height:80px;margin-bottom:8px">
-      <!-- ม.ค.=30, ก.พ.=17, มี.ค.=16, เม.ย.=17 -->
-      <div class="month-col">
-        <div class="month-num">30</div>
-        <div class="month-bar" style="height:80px;background:linear-gradient(180deg,var(--accent),var(--accent2))"></div>
-        <div class="month-name">ม.ค.</div>
-      </div>
-      <div class="month-col">
-        <div class="month-num">17</div>
-        <div class="month-bar" style="height:45px;background:linear-gradient(180deg,var(--green),#16a36a)"></div>
-        <div class="month-name">ก.พ.</div>
-      </div>
-      <div class="month-col">
-        <div class="month-num">16</div>
-        <div class="month-bar" style="height:43px;background:linear-gradient(180deg,var(--orange),#c97a2f)"></div>
-        <div class="month-name">มี.ค.</div>
-      </div>
-      <div class="month-col">
-        <div class="month-num">17</div>
-        <div class="month-bar" style="height:45px;background:linear-gradient(180deg,var(--accent2),#6344d4)"></div>
-        <div class="month-name">เม.ย.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Replacement type -->
-  <div class="card">
-    <div class="card-title">ประเภทการสรรหา</div>
-    <div class="bar-group">
-      <div class="bar-item">
-        <div class="bar-label" style="min-width:120px">ทดแทนลาออก</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div>
-        <div class="bar-count">43</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label" style="min-width:120px">ตามแผนงบประมาณ</div>
-        <div class="bar-track"><div class="bar-fill" style="width:56%;background:var(--accent)"></div></div>
-        <div class="bar-count">24</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label" style="min-width:120px">โครงสร้างใหม่ (นอกแผน)</div>
-        <div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--orange)"></div></div>
-        <div class="bar-count">6</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label" style="min-width:120px">โครงสร้างใหม่</div>
-        <div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--yellow)"></div></div>
-        <div class="bar-count">3</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label" style="min-width:120px">ทดแทนโอนย้าย</div>
-        <div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--muted)"></div></div>
-        <div class="bar-count">1</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Job type + Top departments -->
-  <div class="card">
-    <div class="card-title">ประเภทการจ้างงาน</div>
-    <div style="display:flex;gap:16px;margin-bottom:18px">
-      <div style="flex:1;background:var(--surface2);border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:26px;font-weight:700;color:var(--accent)">68</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">Permanent</div>
-      </div>
-      <div style="flex:1;background:var(--surface2);border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:26px;font-weight:700;color:var(--orange)">12</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">Temporary</div>
-      </div>
-    </div>
-    <div class="card-title" style="margin-top:4px">หน่วยงานที่ร้องขอมากสุด</div>
-    <div style="display:flex;flex-direction:column;gap:5px">
-      <div style="display:flex;justify-content:space-between;font-size:12px"><span>ฝ่ายนายหน้าประกันภัย</span><span style="color:var(--accent)">7</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px"><span>ส่วนงานบัญชี</span><span style="color:var(--accent)">6</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px"><span>ฝ่ายขายอีซี่คาร์ (ทีม 1)</span><span style="color:var(--accent)">5</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px"><span>ขายบุคคลระยะสั้น สุขุมวิท</span><span style="color:var(--accent)">4</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px"><span>ฝ่ายขายอีซี่คาร์ (Flexi)</span><span style="color:var(--accent)">4</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- Pending by BU -->
-<div class="card" style="margin-bottom:16px">
-  <div class="card-title">อัตราค้างรับ จำแนกตาม BU (26 รายการ)</div>
-  <div style="display:flex;gap:14px;flex-wrap:wrap">
-    <div style="background:rgba(79,139,255,0.1);border:1px solid rgba(79,139,255,0.3);border-radius:10px;padding:14px 22px;text-align:center;min-width:110px">
-      <div style="font-size:28px;font-weight:700;color:var(--accent)">16</div>
-      <div style="font-size:12px;color:var(--muted)">TVP</div>
-    </div>
-    <div style="background:rgba(34,217,138,0.1);border:1px solid rgba(34,217,138,0.3);border-radius:10px;padding:14px 22px;text-align:center;min-width:110px">
-      <div style="font-size:28px;font-weight:700;color:var(--green)">7</div>
-      <div style="font-size:12px;color:var(--muted)">TVP-Ez</div>
-    </div>
-    <div style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);border-radius:10px;padding:14px 22px;text-align:center;min-width:110px">
-      <div style="font-size:28px;font-weight:700;color:var(--accent2)">2</div>
-      <div style="font-size:12px;color:var(--muted)">TRP</div>
-    </div>
-    <div style="background:rgba(255,154,60,0.1);border:1px solid rgba(255,154,60,0.3);border-radius:10px;padding:14px 22px;text-align:center;min-width:110px">
-      <div style="font-size:28px;font-weight:700;color:var(--orange)">1</div>
-      <div style="font-size:12px;color:var(--muted)">TVP-Uc</div>
-    </div>
-    <div style="flex:1;background:var(--surface2);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:12px">
-      <div style="font-size:30px">⚠️</div>
-      <div>
-        <div style="font-size:13px;font-weight:600">ต้องติดตาม 26 อัตรา</div>
-        <div style="font-size:11.5px;color:var(--muted);margin-top:3px">อัตราที่ยังรอการบรรจุพนักงาน ส่วนใหญ่อยู่ใน TVP (62%) และ TVP-Ez (27%)</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  HR Recruitment Dashboard · TVP Group · ข้อมูล ณ 29 เมษายน 2569 · สร้างจาก DataSheet 236 รายการ
-</div>
-
+<script src="dashboard.js"></script>
 </body>
 </html>
